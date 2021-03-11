@@ -1,0 +1,3 @@
+com/github/dekaulitz/slackIntegration/helper/TemplateHelper.class
+com/github/dekaulitz/slackIntegration/helper/UserProfileHandler.class
+com/github/dekaulitz/slackIntegration/handler/UserSelectHandler.class
