@@ -1,4 +1,4 @@
-#Slack Integration 
+# Slack Integration 
 This sample application is build on [BOLT framework](https://api.slack.com/tools/bolt) that developed by slack team 
 Bolt provided api slack that we can interaction with slack. Before you running the application you need setup some permission for running this application
 you need enable some features they are: 
@@ -9,7 +9,7 @@ you need enable some features they are:
 * Event subscriptions
 * Permissions
 
-###Permissions
+### Permissions
 For permissions you should added some scopes for some features they are:
 * app_mention:read => View messages that directly mention @testapps in conversations that the app is in
 * channels:history => View messages and other content in public channels that TestApps has been added to
@@ -23,7 +23,7 @@ For permissions you should added some scopes for some features they are:
 
 You need Bot User OAuth Token and Signing Secret that available on app credential.
 
-##How its works
+## How its works
 Just follow the instruction from slack for creating the application then installing the application on the channel that you want and install it.
 After you enabling permission for incoming webhook you can try this curl for testing.
 ```$xslt
