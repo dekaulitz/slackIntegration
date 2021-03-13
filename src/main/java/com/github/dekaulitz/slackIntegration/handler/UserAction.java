@@ -62,8 +62,9 @@ public class UserAction {
             .channel(payloadRequest.getActions().get(0).getSelectedUser())
             .text(
                 "Hai " + SlackUtils.mentionTag(payloadRequest.getActions().get(0).getSelectedUser())
-                    + " there is some task that assigned to you on" + payloadRequest.getChannel()
-                    .getName())
+                    + " there is some task that assigned to you on " + SlackUtils
+                    .channelTag(payloadRequest.getChannel()
+                        .getId()))
         );
     return ctx.ack();
   }
