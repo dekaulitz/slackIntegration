@@ -44,7 +44,7 @@ public class Main {
     // Health check application
     app.command("/ping",
         (slashCommandRequest, context) -> context.ack(":+1: Hai, there we are alive"));
-
+    // When user selecting user
     app.blockAction("select_user-action", (req, ctx) -> {
       BlockActionPayload payloadRequest = req.getPayload();
       return userAction.onAssignTask(payloadRequest, ctx);
@@ -54,13 +54,13 @@ public class Main {
       BlockActionPayload payloadRequest = req.getPayload();
       return userAction.onUpdateStatusTask(payloadRequest, ctx);
     });
-    // when a user clicks a button in the actions block
+    // When a user clicks a button in the actions block
     app.blockAction("approve-action", (req, ctx) -> {
       BlockActionPayload request = req
           .getPayload();
       return userAction.onApproveTask(request, ctx);
     });
-
+    // When a user clicks a button in the actions block
     app.blockAction("deny-action", (req, ctx) -> {
       BlockActionPayload request = req
           .getPayload();

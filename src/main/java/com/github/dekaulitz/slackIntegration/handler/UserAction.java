@@ -16,6 +16,7 @@ public class UserAction {
 
   public Response onApproveTask(BlockActionPayload payloadRequest,
       ActionContext ctx) throws IOException, SlackApiException {
+    log.info("{}", payloadRequest);
     ctx.respond(actionResponseBuilder ->
         actionResponseBuilder
             .replaceOriginal(true)
@@ -40,6 +41,7 @@ public class UserAction {
   public Response onAssignTask(
       BlockActionPayload payloadRequest,
       ActionContext ctx) throws IOException, SlackApiException {
+    log.info("{}", payloadRequest);
     ctx.respond(actionResponseBuilder ->
         actionResponseBuilder
             .replaceOriginal(true)
@@ -72,6 +74,7 @@ public class UserAction {
   public Response onUpdateStatusTask(
       BlockActionPayload payloadRequest,
       ActionContext ctx) throws IOException, SlackApiException {
+    log.info("{}", payloadRequest);
     final boolean isTaskDone = payloadRequest.getActions().get(0).getSelectedOption().getValue()
         .equalsIgnoreCase("DONE");
     if (isTaskDone) {
@@ -103,6 +106,7 @@ public class UserAction {
 
   public Response onDenyTask(BlockActionPayload payloadRequest,
       ActionContext ctx) throws IOException {
+    log.info("{}", payloadRequest);
     ctx.respond(actionResponseBuilder ->
         actionResponseBuilder
             .replaceOriginal(true)
