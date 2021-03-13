@@ -89,7 +89,7 @@ curl --location --request POST '__YOURE_WEBHOOK_URL__' \
 For templating the message you can use [Block Kit Template](https://app.slack.com/block-kit-builder/T01R2CPMDUL#%7B%22blocks%22:%5B%5D%7D), block kit is a standard templating for slack that we should use it.
 You can use [ngrok](https://ngrok.com/) as your'e development environment that tunneling your localhost application so you can make you local application live as long as your local application running. After that registering you're ngrok domain like 
 http://610277c23c39.ngrok.io/slack/events.
-You can use the curl above for do some testing.
+You can use the curl above to do some testing.
 
 Have fun and keep learning !!
 
