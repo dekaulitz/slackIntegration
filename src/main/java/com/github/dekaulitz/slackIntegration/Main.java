@@ -66,7 +66,9 @@ public class Main {
           .getPayload();
       return userAction.onDenyTask(request, ctx);
     });
-    SlackAppServer server = new SlackAppServer(app,System.getenv("PORT"));
+
+    int port = Integer.parseInt(System.getenv("PORT"));
+    SlackAppServer server = new SlackAppServer(app,port);
     server.start(); // http://localhost:3030
   }
 }
