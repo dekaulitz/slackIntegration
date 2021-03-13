@@ -1,4 +1,4 @@
-package com.github.dekaulitz.slackIntegration.helper;
+package com.github.dekaulitz.slackIntegration.handler;
 
 import com.github.dekaulitz.slackIntegration.model.TaskUserModel;
 import com.slack.api.model.block.Blocks;
