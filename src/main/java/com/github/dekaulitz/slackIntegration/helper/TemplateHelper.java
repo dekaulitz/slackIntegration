@@ -13,11 +13,18 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * <pre>This a template helper for rendering the template</pre>
+ */
 public class TemplateHelper {
 
   public static List<LayoutBlock> getOnSelectedUserTaskTemplate(
       BlockActionPayload payloadRequest,
       Date lastUpdate) {
+    /*
+    we can get current section blocks from thread from the request
+    we can get the value from the section blocks
+     */
     SectionBlock approverBlock = (SectionBlock) payloadRequest.getMessage().getBlocks().get(3);
     return Blocks.asBlocks(Blocks.section(sectionBlockBuilder -> sectionBlockBuilder
             .text(BlockCompositions.markdownText(
@@ -83,6 +90,7 @@ public class TemplateHelper {
         }),
         Blocks.section(sectionBlockBuilder ->
             sectionBlockBuilder.text(BlockCompositions
+                // mention people that doing some action
                 .markdownText(SlackUtils.mentionTag(payloadRequest.getUser().getId())
                     + " approved this task"))),
         Blocks.section(sectionBlockBuilder ->
@@ -97,6 +105,10 @@ public class TemplateHelper {
 
   public static List<LayoutBlock> getOnUpdateStatusTaskTemplate(BlockActionPayload payloadRequest,
       Date date) {
+    /*
+    we can get current section blocks from thread from the request
+    we can get the value from the section blocks
+     */
     SectionBlock selectedUserBlock = (SectionBlock) payloadRequest.getMessage().getBlocks().get(2);
     SectionBlock approverBlock = (SectionBlock) payloadRequest.getMessage().getBlocks().get(3);
     return Blocks.asBlocks(
@@ -109,9 +121,11 @@ public class TemplateHelper {
               BlockCompositions.markdownText("*Type:*\nComputer or Laptop"),
               BlockCompositions
                   .markdownText("*Product Name:*\nMacbook pro 2021 13inch"),
+              // Get action text from selection text
               BlockCompositions.markdownText(
                   "*Status:*\n" + payloadRequest.getActions().get(0).getSelectedOption().getText()
                       .getText()),
+              // Block from payload request
               selectedUserBlock.getFields().get(3),
               BlockCompositions.markdownText("*Reason:*\nBroken"),
               BlockCompositions.markdownText("*Last update :*\n" + date.toString())
@@ -146,6 +160,10 @@ public class TemplateHelper {
 
   public static List<LayoutBlock> getOnTaskDoneTemplate(BlockActionPayload payloadRequest,
       Date date) {
+     /*
+    we can get current section blocks from thread from the request
+    we can get the value from the section blocks
+     */
     SectionBlock selectedUser = (SectionBlock) payloadRequest.getMessage().getBlocks().get(2);
     return Blocks.asBlocks(
         Blocks.section(sectionBlockBuilder -> sectionBlockBuilder
@@ -194,6 +212,7 @@ public class TemplateHelper {
         }),
         Blocks.section(sectionBlockBuilder ->
             sectionBlockBuilder.text(BlockCompositions
+                // mentioning user on thread
                 .markdownText(SlackUtils.mentionTag(payloadRequest.getUser().getId())
                     + " declining this task")))
     );

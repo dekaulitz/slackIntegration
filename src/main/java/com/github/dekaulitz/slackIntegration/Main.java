@@ -19,9 +19,9 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
     UserAction userAction = new UserAction();
-    // App expects env variables (SLACK_BOT_TOKEN, SLACK_SIGNING_SECRET)
+    // app expects env variables (SLACK_BOT_TOKEN, SLACK_SIGNING_SECRET)
     App app = new App();
-    // Home page application
+    // home page application that using event subscription on `AppHomeOpenedEvent`
     app.event(AppHomeOpenedEvent.class, (payload, ctx) -> {
       View appHomeView = Views.view(view -> view
           .type("home")
@@ -41,34 +41,35 @@ public class Main {
           );
       return ctx.ack();
     });
-    // Health check application
+    // command feature for ping the application for health check
     app.command("/ping",
         (slashCommandRequest, context) -> context.ack(":+1: Hai, there we are alive"));
-    // When user selecting user
+
+    // this the block action with action id `select_user-action` using users select block component
     app.blockAction("select_user-action", (req, ctx) -> {
       BlockActionPayload payloadRequest = req.getPayload();
       return userAction.onAssignTask(payloadRequest, ctx);
     });
-
+    // this is the block action with action id `select_status-action` using static select block component
     app.blockAction("select_status-action", (req, ctx) -> {
       BlockActionPayload payloadRequest = req.getPayload();
       return userAction.onUpdateStatusTask(payloadRequest, ctx);
     });
-    // When a user clicks a button in the actions block
+    // this is the block action with action id `approve-action` using button block component
     app.blockAction("approve-action", (req, ctx) -> {
       BlockActionPayload request = req
           .getPayload();
       return userAction.onApproveTask(request, ctx);
     });
-    // When a user clicks a button in the actions block
+    // this is the block action with action id `deny-action` using button block component
     app.blockAction("deny-action", (req, ctx) -> {
       BlockActionPayload request = req
           .getPayload();
       return userAction.onDenyTask(request, ctx);
     });
 
-    int port = Integer.parseInt(System.getenv("PORT"));
-    SlackAppServer server = new SlackAppServer(app,port);
-    server.start(); // http://localhost:3030
+    int port = Integer.parseInt(System.getenv("PORT") == null ? "3000" : System.getenv("PORT"));
+    SlackAppServer server = new SlackAppServer(app, port);
+    server.start();
   }
 }
